@@ -93,7 +93,7 @@ namespace LicenseTaxCalculator
         bool errorDate;
         bool errorType;
         bool errorEngine;
-        string[] CarTypes = { "機車", "自用小客車", "營業用小客車", "貨車", "大客車" };
+        string[] CarTypes = { "機車", "自用小客車", "營業用小客車", "貨車", "大客車" }; // 車種用途對比清單
 
         /// <summary> 試算程式初始化 </summary>
         private void Init()
@@ -119,7 +119,7 @@ namespace LicenseTaxCalculator
             this.txtResult.Text = null;
         }
 
-        /// <summary> 選擇用途ComboBox時，刷新引擎/馬力ComboBox items </summary>
+        /// <summary> 選擇用途ComboBox時,刷新引擎/馬力ComboBox items </summary>
         private void RefreshEngineCbx()
         {
             string carType = this.cbxType.Text;
@@ -153,7 +153,7 @@ namespace LicenseTaxCalculator
             }
         }
 
-        /// <summary> 選擇用途與稅率 </summary>
+        /// <summary> 依照選擇的用途以及馬力,將稅金寫入到全域變數taxValue </summary>
         private void TaxByType()
         {
             switch (this.cbxType.Text)
@@ -180,13 +180,14 @@ namespace LicenseTaxCalculator
             }
         }
 
-        /// <summary> 偵測使用者是否填入用途選項錯誤 </summary>
+        /// <summary> 偵測使用者是否填入日期範圍錯誤 </summary>
         private void ErrorDetectDate()
         {
-            if (this.datePickEnd.Value < this.datePickStart.Value)
+            // 判斷結束日期是否小於起始日期
+            if (this.datePickEnd.Value < this.datePickStart.Value) 
             {
-                this.yearMsg.Visible = true;
-                errorDate = true;
+                this.yearMsg.Visible = true; // 顯示錯誤訊息
+                errorDate = true; // 紀錄Error
             }
             else
             {
@@ -198,12 +199,13 @@ namespace LicenseTaxCalculator
         /// <summary> 偵測使用者是否填入用途選項錯誤 </summary>
         private void ErrorDetectType()
         {
+            // 比對Array資料
             foreach (string _type in CarTypes)
             {
                 if (this.cbxType.Text != _type)
                 {
-                    this.typeMsg.Visible = true;
-                    errorType = true;
+                    this.typeMsg.Visible = true; // 顯示錯誤訊息
+                    errorType = true; // 紀錄Error
                 }
                 else
                 {
@@ -217,12 +219,13 @@ namespace LicenseTaxCalculator
         /// <summary> 偵測使用者是否填入馬力選項錯誤 </summary>
         private void ErrorDetectEngine()
         {
+            // Dictionary資料比對
             foreach (string _item in this.cbxEngine.Items)
             {
                 if (this.cbxEngine.Text != _item)
                 {
-                    this.engineMsg.Visible = true;
-                    errorEngine = true;
+                    this.engineMsg.Visible = true; // 顯示錯誤訊息
+                    errorEngine = true; // 紀錄Error
                 }
                 else
                 {
@@ -234,12 +237,12 @@ namespace LicenseTaxCalculator
         }
 
         /// <summary> 判斷是不是閏年並輸出一年有幾天 </summary> 
-        ///     <param name="_date"> 查詢的日期 </param>
-        ///         <returns></returns>
+        /// <param name="_date"> 查詢的日期 </param>
+        /// <returns></returns>
         private int ReturnYearDays(DateTime _date)
         {
             if (DateTime.IsLeapYear(_date.Year))
-                return 366;
+                return 366; 
             else
                 return 365;
         }
@@ -252,6 +255,7 @@ namespace LicenseTaxCalculator
             DateTime YearTimeTail;
             int DaysInYear;
 
+            // 寫入日期變數
             YearTimeHead = new DateTime(DateTime.Today.Year, 1, 1);
             YearTimeTail = new DateTime(DateTime.Today.Year, 12, 31);
             DaysInYear = ReturnYearDays(DateTime.Today);
@@ -259,13 +263,22 @@ namespace LicenseTaxCalculator
             // 依照條件選擇稅率並寫到全域變數taxValue
             TaxByType();
 
-            // 輸出結果
-            this.txtResult.Text += $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}" + Environment.NewLine;
-            this.txtResult.Text += $"使用天數 : {DaysInYear}" + Environment.NewLine;
-            this.txtResult.Text += $"用途 : {this.cbxType.Text}" + Environment.NewLine;
-            this.txtResult.Text += $"計算公式 : {taxValue} * {DaysInYear} / {DaysInYear} = {taxValue}" + Environment.NewLine;
-            this.txtResult.Text += $"應繳稅額 : {taxValue}" + Environment.NewLine;
-            this.txtResult.Text += $"  " + Environment.NewLine;
+            // String Array輸出模板
+            string[] outputFomat = {
+                        $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}",
+                        $"使用天數 : {DaysInYear}",
+                        $"汽缸CC數 : {this.cbxEngine.Text}",
+                        $"用途 : {this.cbxType.Text}",
+                        $"計算公式 : {taxValue} * {DaysInYear} / {DaysInYear} = {taxValue} 元",
+                        $"應繳稅額 : 共 {taxValue} 元",
+                        $" -----------------------------------"
+                    };
+
+            // 輸出Result到TextBox中
+            foreach (string _textLine in outputFomat)
+            {
+                this.txtResult.Text += _textLine + Environment.NewLine;
+            }
         }
 
         /// <summary> 選擇"依期間"按鈕時, 依照輸入資料與給定期間計算稅率後輸出稅金 </summary>
@@ -273,7 +286,7 @@ namespace LicenseTaxCalculator
         {
             // 宣告區域變數
             DateTime YearTimeHead;
-            DateTime YearTimeTail;
+            DateTime YearTimeTail; 
             int UsedDays;
             int DaysInYear;
             decimal taxRatio;
@@ -285,36 +298,46 @@ namespace LicenseTaxCalculator
             // 判斷是否有跨年
             if (this.datePickStart.Value.Year == this.datePickEnd.Value.Year)
             {
-                YearTimeHead = this.datePickStart.Value;
-                YearTimeTail = this.datePickEnd.Value;
+                YearTimeHead = this.datePickStart.Value.Date;
+                YearTimeTail = this.datePickEnd.Value.Date;
+
                 UsedDays = (YearTimeTail - YearTimeHead).Days + 1;
                 DaysInYear = ReturnYearDays(this.datePickStart.Value);
-                taxRatio = (int)(taxValue * UsedDays / DaysInYear);
 
-                // 輸出結果
-                this.txtResult.Text += $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}" + Environment.NewLine;
-                this.txtResult.Text += $"使用天數 : {UsedDays}" + Environment.NewLine;
-                this.txtResult.Text += $"汽缸CC數 : {this.cbxEngine.Text}" + Environment.NewLine;
-                this.txtResult.Text += $"用途 : {this.cbxType.Text}" + Environment.NewLine;
-                this.txtResult.Text += $"計算公式 : {taxValue} * {UsedDays} / {DaysInYear} = {taxRatio}" + Environment.NewLine;
-                this.txtResult.Text += $"應繳稅額 : {taxRatio}" + Environment.NewLine;
-                this.txtResult.Text += $"  " + Environment.NewLine;
+                taxRatio = (int)(taxValue * UsedDays / DaysInYear); //直接轉型;無條件捨去
 
+                // String Array輸出模板
+                string[] outputFomat = {
+                        $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}",
+                        $"使用天數 : {UsedDays}",
+                        $"汽缸CC數 : {this.cbxEngine.Text}",
+                        $"用途 : {this.cbxType.Text}",
+                        $"計算公式 : {taxValue} * {UsedDays} / {DaysInYear} = {taxRatio} 元",
+                        $"應繳稅額 : 共 {taxRatio} 元",
+                        $" -----------------------------------"
+                    };
+
+                // 輸出Result到TextBox中
+                foreach (string _textLine in outputFomat)
+                {
+                    this.txtResult.Text += _textLine + Environment.NewLine;
+                }
             }
             else
             {
+                // 跨年迴圈輸出
                 for (int _year = this.datePickStart.Value.Year; _year <= this.datePickEnd.Value.Year; _year++)
                 {
                     if (_year == this.datePickStart.Value.Year) // 開始年段
                     {
-                        YearTimeHead = this.datePickStart.Value;
+                        YearTimeHead = this.datePickStart.Value.Date;
                         YearTimeTail = new DateTime(this.datePickStart.Value.Year, 12, 31);
                         UsedDays = (YearTimeTail - YearTimeHead).Days + 1;
                     }
                     else if (_year == this.datePickEnd.Value.Year) // 結束年段
                     {
                         YearTimeHead = new DateTime(this.datePickEnd.Value.Year, 1, 1);
-                        YearTimeTail = this.datePickEnd.Value;
+                        YearTimeTail = this.datePickEnd.Value.Date;
                         UsedDays = (YearTimeTail - YearTimeHead).Days + 1;
                     }
                     else // 中間年段
@@ -326,23 +349,31 @@ namespace LicenseTaxCalculator
 
                     // 計算稅金
                     DaysInYear = ReturnYearDays(YearTimeHead);
-                    taxRatio = (int)(taxValue * UsedDays / DaysInYear);
+                    taxRatio = (int)(taxValue * UsedDays / DaysInYear); //強制轉型,無條件捨去
 
-                    // 輸出每一個週期的結果
-                    this.txtResult.Text += $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}" + Environment.NewLine;
-                    this.txtResult.Text += $"使用天數 : {UsedDays}" + Environment.NewLine;
-                    this.txtResult.Text += $"汽缸CC數 : {this.cbxEngine.Text}" + Environment.NewLine;
-                    this.txtResult.Text += $"用途 : {this.cbxType.Text}" + Environment.NewLine;
-                    this.txtResult.Text += $"計算公式 : {taxValue} * {UsedDays} / {DaysInYear} = {taxRatio}" + Environment.NewLine;
-                    this.txtResult.Text += $"應繳稅額 : {taxRatio}" + Environment.NewLine;
-                    this.txtResult.Text += $"  " + Environment.NewLine;
+                    // String Array輸出模板
+                    string[] outputFomat = {
+                        $"使用期間 : {YearTimeHead.ToString("yyyy-MM-dd")} ~ {YearTimeTail.ToString("yyyy-MM-dd")}",
+                        $"使用天數 : {UsedDays}",
+                        $"汽缸CC數 : {this.cbxEngine.Text}",
+                        $"用途 : {this.cbxType.Text}",
+                        $"計算公式 : {taxValue} * {UsedDays} / {DaysInYear} = {taxRatio} 元",
+                        $"應繳稅額 : 共 {taxRatio} 元",
+                        $" -----------------------------------"
+                    };
+
+                    // 輸出Result到TextBox中
+                    foreach (string _textLine in outputFomat)
+                    {
+                        this.txtResult.Text += _textLine + Environment.NewLine;
+                    }
 
                     // 加總每一年段稅金
                     taxTotal += taxRatio;
                 }
 
                 // 輸出總稅額金額
-                this.txtResult.Text += $"全部應繳稅額 : {taxTotal}" + Environment.NewLine;
+                this.txtResult.Text += $"全部應繳稅額 : 共 {taxTotal} 元";
             }
         }
 
@@ -358,11 +389,11 @@ namespace LicenseTaxCalculator
             {
                 this.btnMsg.Visible = false;
                 
-                if (rbtnAnnual.Checked)
+                if (rbtnAnnual.Checked) // 依年度
                 {
                     AnnualMethod();
                 }
-                else if (rbtnPeriod.Checked)
+                else if (rbtnPeriod.Checked) // 依區間
                 {
                     PeriodMethod();
                 }
@@ -386,30 +417,35 @@ namespace LicenseTaxCalculator
                 {"1801cc或以上 / 114.12HP或以上(121.77PS或以上)", 11230 }
             };
 
-            // 選擇case
-            switch (_input)
+            // 出錯偵錯並顯示錯誤訊息
+            try
             {
-                case "cbx":
-                    foreach (var items in _bikeTax)
-                    {
-                        this.cbxEngine.Items.Add(items.Key);
-                    }
-                    break;
-
-                case "value":
-                    foreach (var _key in _bikeTax.Keys)
-                    {
-                        if (_key == this.cbxEngine.Text)
+                // 選擇case
+                switch (_input)
+                {
+                    case "cbx": // 輸出Key資料
+                        foreach (var items in _bikeTax)
                         {
-                            taxValue = _bikeTax[_key];
+                            this.cbxEngine.Items.Add(items.Key);
                         }
-                    }
-                    break;
+                        break;
 
-                default:
-                    break;
+                    case "value": // 輸出稅金
+                        foreach (var _key in _bikeTax.Keys)
+                        {
+                            if (_key == this.cbxEngine.Text)
+                            {
+                                taxValue = _bikeTax[_key];
+                            }
+                        }
+                        break;
+                }
             }
-
+            catch (Exception _ex)
+            {
+                this.txtResult.Text = "Dictionary 功能出錯，請通知相關工程人員" + Environment.NewLine;
+                this.txtResult.Text += _ex.ToString();
+            }
         }
 
         /// <summary> 汽車稅率表 </summary>
@@ -432,31 +468,37 @@ namespace LicenseTaxCalculator
                 {"7801cc 以上", new int[2] { 151200, 56700 }}
             };
 
-            // 選擇case
-            switch (_input)
+            // 出錯偵錯並顯示錯誤訊息
+            try
             {
-                case "cbx":     // 輸出Key
-                    foreach (var items in _carTax)
-                    {
-                        this.cbxEngine.Items.Add(items.Key);
-                    }
-                    break;
-
-                case "value":   // 輸出稅率
-                    if (_type == 0 || _type == 1)
-                    {
-                        foreach (var _key in _carTax.Keys)
+                // 選擇case
+                switch (_input)
+                {
+                    case "cbx":     // 輸出Key
+                        foreach (var items in _carTax)
                         {
-                            if (_key == this.cbxEngine.Text)
+                            this.cbxEngine.Items.Add(items.Key);
+                        }
+                        break;
+
+                    case "value":   // 輸出稅金
+                        if (_type == 0 || _type == 1)
+                        {
+                            foreach (var _key in _carTax.Keys)
                             {
-                                taxValue = _carTax[_key][_type];
+                                if (_key == this.cbxEngine.Text)
+                                {
+                                    taxValue = _carTax[_key][_type];
+                                }
                             }
                         }
-                    }
-                    break;
-
-                default:
-                    break;
+                        break;
+                }
+            }
+            catch (Exception _ex)
+            {
+                this.txtResult.Text = "Dictionary 功能出錯，請通知相關工程人員" + Environment.NewLine;
+                this.txtResult.Text += _ex.ToString();
             }
         }
 
@@ -487,31 +529,36 @@ namespace LicenseTaxCalculator
                 {"10201cc 以上", new int[2] { 16200, 16200 }},
             };
 
-            switch (_input)
+            // 出錯偵錯並顯示錯誤訊息
+            try
             {
-                case "cbx":
-                    foreach (var items in _truckTax)
-                    {
-                        this.cbxEngine.Items.Add(items.Key);
-                    }
-                    break;
-
-                case "value":
-                    foreach (var _key in _truckTax.Keys)
-                    {
-                        if (_key == this.cbxEngine.Text)
+                // 選擇case
+                switch (_input)
+                {
+                    case "cbx":   // 輸出Key
+                        foreach (var items in _truckTax)
                         {
-                            taxValue = _truckTax[_key][_type];
+                            this.cbxEngine.Items.Add(items.Key);
                         }
-                    }
-                    break;
+                        break;
 
-                default:
-                    break;
+                    case "value":  // 輸出稅金
+                        foreach (var _key in _truckTax.Keys)
+                        {
+                            if (_key == this.cbxEngine.Text)
+                            {
+                                taxValue = _truckTax[_key][_type];
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception _ex)
+            {
+                this.txtResult.Text = "Dictionary 功能出錯，請通知相關工程人員" + Environment.NewLine;
+                this.txtResult.Text += _ex.ToString();
             }
         }
-
-
 
         #endregion
 
