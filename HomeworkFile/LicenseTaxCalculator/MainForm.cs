@@ -318,7 +318,7 @@ namespace LicenseTaxCalculator
                 UsedDays = (YearTimeTail - YearTimeHead).Days + 1;
                 DaysInYear = ReturnYearDays(this.datePickStart.Value);
 
-                taxRatio = (int)(taxValue * UsedDays / DaysInYear); //直接轉型;無條件捨去
+                taxRatio = Math.Truncate((decimal)(taxValue * UsedDays / DaysInYear)); //直接轉型;無條件捨去
 
                 // String Array輸出模板
                 string[] outputFomat = {
@@ -363,7 +363,7 @@ namespace LicenseTaxCalculator
 
                     // 計算稅金
                     DaysInYear = ReturnYearDays(YearTimeHead);
-                    taxRatio = (int)(taxValue * UsedDays / DaysInYear); //強制轉型,無條件捨去
+                    taxRatio = Math.Truncate((decimal)(taxValue * UsedDays / DaysInYear)); //強制轉型,無條件捨去
 
                     // String Array輸出模板
                     string[] outputFomat = {
