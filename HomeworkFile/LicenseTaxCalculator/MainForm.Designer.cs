@@ -51,13 +51,14 @@ namespace LicenseTaxCalculator
             this.labelHint02 = new System.Windows.Forms.Label();
             this.linkToTaxLabel = new System.Windows.Forms.LinkLabel();
             this.btnMsg = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rbtnAnnual
             // 
             this.rbtnAnnual.AutoSize = true;
             this.rbtnAnnual.Font = new System.Drawing.Font("微軟正黑體", 16F);
-            this.rbtnAnnual.Location = new System.Drawing.Point(253, 199);
+            this.rbtnAnnual.Location = new System.Drawing.Point(224, 199);
             this.rbtnAnnual.Name = "rbtnAnnual";
             this.rbtnAnnual.Size = new System.Drawing.Size(96, 32);
             this.rbtnAnnual.TabIndex = 0;
@@ -70,7 +71,7 @@ namespace LicenseTaxCalculator
             // 
             this.rbtnPeriod.AutoSize = true;
             this.rbtnPeriod.Font = new System.Drawing.Font("微軟正黑體", 16F);
-            this.rbtnPeriod.Location = new System.Drawing.Point(368, 199);
+            this.rbtnPeriod.Location = new System.Drawing.Point(339, 199);
             this.rbtnPeriod.Name = "rbtnPeriod";
             this.rbtnPeriod.Size = new System.Drawing.Size(96, 32);
             this.rbtnPeriod.TabIndex = 1;
@@ -83,7 +84,7 @@ namespace LicenseTaxCalculator
             // 
             this.datePickStart.CustomFormat = "";
             this.datePickStart.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.datePickStart.Location = new System.Drawing.Point(470, 196);
+            this.datePickStart.Location = new System.Drawing.Point(441, 196);
             this.datePickStart.Name = "datePickStart";
             this.datePickStart.Size = new System.Drawing.Size(187, 35);
             this.datePickStart.TabIndex = 2;
@@ -95,7 +96,7 @@ namespace LicenseTaxCalculator
             // 
             this.labelRbtn2.AutoSize = true;
             this.labelRbtn2.Font = new System.Drawing.Font("微軟正黑體", 16F);
-            this.labelRbtn2.Location = new System.Drawing.Point(663, 202);
+            this.labelRbtn2.Location = new System.Drawing.Point(634, 202);
             this.labelRbtn2.Name = "labelRbtn2";
             this.labelRbtn2.Size = new System.Drawing.Size(34, 28);
             this.labelRbtn2.TabIndex = 3;
@@ -105,7 +106,7 @@ namespace LicenseTaxCalculator
             // datePickEnd
             // 
             this.datePickEnd.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.datePickEnd.Location = new System.Drawing.Point(703, 196);
+            this.datePickEnd.Location = new System.Drawing.Point(674, 196);
             this.datePickEnd.Name = "datePickEnd";
             this.datePickEnd.Size = new System.Drawing.Size(187, 35);
             this.datePickEnd.TabIndex = 4;
@@ -116,7 +117,7 @@ namespace LicenseTaxCalculator
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(142, 202);
+            this.label1.Location = new System.Drawing.Point(113, 202);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 26);
             this.label1.TabIndex = 5;
@@ -127,7 +128,7 @@ namespace LicenseTaxCalculator
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(184, 250);
+            this.label2.Location = new System.Drawing.Point(155, 250);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 26);
             this.label2.TabIndex = 6;
@@ -144,7 +145,7 @@ namespace LicenseTaxCalculator
             "大客車",
             "自用小客車",
             "營業用小客車"});
-            this.cbxType.Location = new System.Drawing.Point(253, 247);
+            this.cbxType.Location = new System.Drawing.Point(224, 247);
             this.cbxType.Name = "cbxType";
             this.cbxType.Size = new System.Drawing.Size(182, 35);
             this.cbxType.TabIndex = 7;
@@ -155,7 +156,7 @@ namespace LicenseTaxCalculator
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(32, 300);
+            this.label3.Location = new System.Drawing.Point(3, 300);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(206, 26);
             this.label3.TabIndex = 8;
@@ -166,7 +167,7 @@ namespace LicenseTaxCalculator
             // 
             this.cbxEngine.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.cbxEngine.FormattingEnabled = true;
-            this.cbxEngine.Location = new System.Drawing.Point(253, 302);
+            this.cbxEngine.Location = new System.Drawing.Point(224, 302);
             this.cbxEngine.Name = "cbxEngine";
             this.cbxEngine.Size = new System.Drawing.Size(415, 28);
             this.cbxEngine.TabIndex = 9;
@@ -176,7 +177,7 @@ namespace LicenseTaxCalculator
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(142, 351);
+            this.label4.Location = new System.Drawing.Point(113, 351);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 26);
             this.label4.TabIndex = 10;
@@ -186,7 +187,7 @@ namespace LicenseTaxCalculator
             // txtResult
             // 
             this.txtResult.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtResult.Location = new System.Drawing.Point(253, 350);
+            this.txtResult.Location = new System.Drawing.Point(224, 350);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -196,7 +197,7 @@ namespace LicenseTaxCalculator
             // btnSumit
             // 
             this.btnSumit.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSumit.Location = new System.Drawing.Point(234, 778);
+            this.btnSumit.Location = new System.Drawing.Point(200, 780);
             this.btnSumit.Name = "btnSumit";
             this.btnSumit.Size = new System.Drawing.Size(126, 53);
             this.btnSumit.TabIndex = 12;
@@ -207,7 +208,7 @@ namespace LicenseTaxCalculator
             // btnReset
             // 
             this.btnReset.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnReset.Location = new System.Drawing.Point(571, 778);
+            this.btnReset.Location = new System.Drawing.Point(400, 780);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(126, 53);
             this.btnReset.TabIndex = 13;
@@ -222,7 +223,7 @@ namespace LicenseTaxCalculator
             this.yearMsg.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.yearMsg.ForeColor = System.Drawing.Color.Red;
             this.yearMsg.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.yearMsg.Location = new System.Drawing.Point(466, 173);
+            this.yearMsg.Location = new System.Drawing.Point(437, 173);
             this.yearMsg.Name = "yearMsg";
             this.yearMsg.Size = new System.Drawing.Size(153, 20);
             this.yearMsg.TabIndex = 14;
@@ -236,7 +237,7 @@ namespace LicenseTaxCalculator
             this.typeMsg.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.typeMsg.ForeColor = System.Drawing.Color.Red;
             this.typeMsg.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.typeMsg.Location = new System.Drawing.Point(441, 255);
+            this.typeMsg.Location = new System.Drawing.Point(412, 255);
             this.typeMsg.Name = "typeMsg";
             this.typeMsg.Size = new System.Drawing.Size(121, 20);
             this.typeMsg.TabIndex = 15;
@@ -250,7 +251,7 @@ namespace LicenseTaxCalculator
             this.engineMsg.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.engineMsg.ForeColor = System.Drawing.Color.Red;
             this.engineMsg.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.engineMsg.Location = new System.Drawing.Point(674, 305);
+            this.engineMsg.Location = new System.Drawing.Point(645, 305);
             this.engineMsg.Name = "engineMsg";
             this.engineMsg.Size = new System.Drawing.Size(121, 20);
             this.engineMsg.TabIndex = 16;
@@ -308,18 +309,30 @@ namespace LicenseTaxCalculator
             this.btnMsg.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnMsg.ForeColor = System.Drawing.Color.Red;
             this.btnMsg.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnMsg.Location = new System.Drawing.Point(185, 755);
+            this.btnMsg.Location = new System.Drawing.Point(156, 755);
             this.btnMsg.Name = "btnMsg";
             this.btnMsg.Size = new System.Drawing.Size(233, 20);
             this.btnMsg.TabIndex = 22;
             this.btnMsg.Text = "請重新確認輸入資料正確再送出";
             this.btnMsg.Visible = false;
             // 
+            // btnExit
+            // 
+            this.btnExit.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnExit.Location = new System.Drawing.Point(600, 780);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(126, 53);
+            this.btnExit.TabIndex = 23;
+            this.btnExit.Text = "離開";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 837);
+            this.ClientSize = new System.Drawing.Size(893, 850);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnMsg);
             this.Controls.Add(this.linkToTaxLabel);
             this.Controls.Add(this.labelHint02);
@@ -374,6 +387,7 @@ namespace LicenseTaxCalculator
         private System.Windows.Forms.Label labelHint02;
         private System.Windows.Forms.LinkLabel linkToTaxLabel;
         private System.Windows.Forms.Label btnMsg;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 

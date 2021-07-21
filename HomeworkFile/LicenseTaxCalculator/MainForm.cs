@@ -42,6 +42,10 @@ namespace LicenseTaxCalculator
             this.datePickStart.Visible = true;
             this.datePickEnd.Visible = true;
             this.labelRbtn2.Visible = true;
+
+            // 自動選擇當年度01/01和12/31
+            this.datePickStart.Value = new DateTime(DateTime.Today.Year, 1, 1);
+            this.datePickEnd.Value = new DateTime(DateTime.Today.Year, 12, 31);
         }
 
         private void datePickEnd_ValueChanged(object sender, EventArgs e)
@@ -83,6 +87,16 @@ namespace LicenseTaxCalculator
         private void btnReset_Click(object sender, EventArgs e)
         {
             this.Init();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // PopMessage
+            if (MessageBox.Show("確定離開?", "離開試算表", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                MessageBox.Show("Bye~~~~", "關閉中...");
+                Application.Exit();
+            }
         }
 
         #endregion
